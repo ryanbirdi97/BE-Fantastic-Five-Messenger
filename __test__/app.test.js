@@ -123,16 +123,24 @@ describe("PATCH /api/users/:user_id", () => {
       });
   });
 
-  //   test("responds with status:400, when user_id is not a number", () => {
-  //     const userUpdates = {
-  //       username: "Manita",
-  //     };
-  //     return request(app)
-  //       .patch("/api/users/a")
-  //       .send(userUpdates)
-  //       .expect(400)
-  //       .then(({ body: { msg } }) => {
-  //         expect(msg).toBe("Bad Request");
-  //       });
-  //   });
+  test("responds with status:200, responds with the updated user when only username is passed in body", () => {
+    const userUpdates = {
+      status: true,
+    };
+    return request(app)
+      .patch("/api/users/1")
+      .send(userUpdates)
+      .expect(200)
+      .then(({ body: { user } }) => {
+        expect(user).toEqual({
+          user_id: 1,
+          username: "Manita",
+          avatar:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
+          status: true,
+        });
+      });
+  });
+
+  //
 });

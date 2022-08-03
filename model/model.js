@@ -20,7 +20,21 @@ exports.fetchUsersByUsername = (username) => {
 };
 
 exports.updateUser = (user_id, body) => {
-  const { username, avatar } = body;
+  const { username, avatar, status } = body;
+
+ // const validStatus = ["true", "True", "false", "False"];
+
+  if (status) {
+    return db
+      .query("UPDATE users SET status=$1 WHERE user_id=$2 RETURNING *", [
+        status,
+        user_id,
+      ])
+      .then(({ rows }) => {
+        return rows[0];
+      });
+  }
+
   if (username && avatar) {
     return db
       .query(
