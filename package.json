@@ -16,7 +16,6 @@
     "pg-format": "^1.0.4",
     "supertest": "^6.2.4"
   },
-  "devDependencies": {},
   "scripts": {
     "setup-dbs": "psql -f db/setup.sql",
     "seed": "node ./db/run-seed.js",
