@@ -2,7 +2,7 @@ const {
   fetchUsers,
   fetchUsersByUsername,
   updateUser,
-} = require("../Model/model");
+} = require("../model/model");
 
 exports.getUsers = (req, res, next) => {
   fetchUsers()
